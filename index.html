@@ -193,11 +193,26 @@
             padding: 12px 24px; /* Consistent button size */
         }
         
+        .chart-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        
         .chart-container {
             height: 400px;
-            margin-bottom: 50px; /* Increased bottom margin */
+            min-width: 600px; /* Minimum width */
             position: relative;
             animation: fadeIn 1s 0.7s both;
+        }
+        
+        /* Dynamically adjust chart width based on number of mocks */
+        .chart-container.large {
+            min-width: 1000px;
+        }
+        
+        .chart-container.xlarge {
+            min-width: 1200px;
         }
         
         .chart-toggle {
@@ -403,8 +418,10 @@
             <button class="chart-btn" data-chart="qa">QA</button>
         </div>
         
-        <div class="chart-container">
-            <canvas id="progressChart"></canvas>
+        <div class="chart-wrapper">
+            <div class="chart-container" id="chartContainer">
+                <canvas id="progressChart"></canvas>
+            </div>
         </div>
         
         <table id="mockTable">
@@ -476,7 +493,7 @@
                 </div>
                 <div class="form-group">
                     <label for="varcPercentile">VARC Percentile</label>
-                    <input type="number" id="varcPercentile" min="0" max="100" step="0.1" required>
+                    <input type="number" id="varcPercentile" min="0" max="100" step="0.01" required>
                 </div>
                 <div class="form-group">
                     <label for="lrdiScore">LRDI Score</label>
@@ -484,7 +501,7 @@
                 </div>
                 <div class="form-group">
                     <label for="lrdiPercentile">LRDI Percentile</label>
-                    <input type="number" id="lrdiPercentile" min="0" max="100" step="0.1" required>
+                    <input type="number" id="lrdiPercentile" min="0" max="100" step="0.01" required>
                 </div>
                 <div class="form-group">
                     <label for="qaScore">QA Score</label>
@@ -492,7 +509,7 @@
                 </div>
                 <div class="form-group">
                     <label for="qaPercentile">QA Percentile</label>
-                    <input type="number" id="qaPercentile" min="0" max="100" step="0.1" required>
+                    <input type="number" id="qaPercentile" min="0" max="100" step="0.01" required>
                 </div>
                 <div class="form-group">
                     <label for="overallScore">Overall Score</label>
@@ -500,7 +517,7 @@
                 </div>
                 <div class="form-group">
                     <label for="overallPercentile">Overall Percentile</label>
-                    <input type="number" id="overallPercentile" min="0" max="100" step="0.1" required>
+                    <input type="number" id="overallPercentile" min="0" max="100" step="0.01" required>
                 </div>
                 <div class="form-actions">
                     <button type="button" id="cancelBtn">Cancel</button>
@@ -539,6 +556,7 @@
         const lrdiPrediction = document.getElementById('lrdiPrediction');
         const qaPrediction = document.getElementById('qaPrediction');
         const overallPrediction = document.getElementById('overallPrediction');
+        const chartContainer = document.getElementById('chartContainer');
         
         // Chart variables
         let progressChart;
@@ -588,13 +606,13 @@
                     <td>${mock.name}</td>
                     <td>${formatDate(mock.date)}</td>
                     <td>${mock.varcScore}</td>
-                    <td class="${getPercentileClass(mock.varcPercentile)}">${mock.varcPercentile.toFixed(1)}</td>
+                    <td class="${getPercentileClass(mock.varcPercentile)}">${mock.varcPercentile.toFixed(2)}</td>
                     <td>${mock.lrdiScore}</td>
-                    <td class="${getPercentileClass(mock.lrdiPercentile)}">${mock.lrdiPercentile.toFixed(1)}</td>
+                    <td class="${getPercentileClass(mock.lrdiPercentile)}">${mock.lrdiPercentile.toFixed(2)}</td>
                     <td>${mock.qaScore}</td>
-                    <td class="${getPercentileClass(mock.qaPercentile)}">${mock.qaPercentile.toFixed(1)}</td>
+                    <td class="${getPercentileClass(mock.qaPercentile)}">${mock.qaPercentile.toFixed(2)}</td>
                     <td>${mock.overallScore}</td>
-                    <td class="${getPercentileClass(mock.overallPercentile)}">${mock.overallPercentile.toFixed(1)}</td>
+                    <td class="${getPercentileClass(mock.overallPercentile)}">${mock.overallPercentile.toFixed(2)}</td>
                     <td>
                         <button class="edit-btn" data-id="${mock.id}">Edit</button>
                         <button class="delete-btn" data-id="${mock.id}">Delete</button>
@@ -617,6 +635,21 @@
                     deleteMock(id);
                 });
             });
+            
+            // Adjust chart container width based on number of mocks
+            adjustChartContainerWidth(mocks.length);
+        }
+        
+        // Adjust chart container width based on number of mocks
+        function adjustChartContainerWidth(numMocks) {
+            // Reset classes
+            chartContainer.classList.remove('large', 'xlarge');
+            
+            if (numMocks > 10) {
+                chartContainer.classList.add('xlarge');
+            } else if (numMocks > 5) {
+                chartContainer.classList.add('large');
+            }
         }
         
         // Get percentile class for color coding
@@ -647,13 +680,13 @@
                     document.getElementById('mockName').value = mock.name;
                     document.getElementById('mockDate').value = mock.date;
                     document.getElementById('varcScore').value = mock.varcScore;
-                    document.getElementById('varcPercentile').value = mock.varcPercentile;
+                    document.getElementById('varcPercentile').value = mock.varcPercentile.toFixed(2);
                     document.getElementById('lrdiScore').value = mock.lrdiScore;
-                    document.getElementById('lrdiPercentile').value = mock.lrdiPercentile;
+                    document.getElementById('lrdiPercentile').value = mock.lrdiPercentile.toFixed(2);
                     document.getElementById('qaScore').value = mock.qaScore;
-                    document.getElementById('qaPercentile').value = mock.qaPercentile;
+                    document.getElementById('qaPercentile').value = mock.qaPercentile.toFixed(2);
                     document.getElementById('overallScore').value = mock.overallScore;
-                    document.getElementById('overallPercentile').value = mock.overallPercentile;
+                    document.getElementById('overallPercentile').value = mock.overallPercentile.toFixed(2);
                 }
             } else {
                 // Add mode
@@ -765,6 +798,23 @@
                         tooltip: {
                             mode: 'index',
                             intersect: false,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        // Show two decimal places for percentiles, none for scores
+                                        if (label.includes('Percentile')) {
+                                            label += context.parsed.y.toFixed(2);
+                                        } else {
+                                            label += context.parsed.y.toFixed(0);
+                                        }
+                                    }
+                                    return label;
+                                }
+                            }
                         }
                     }
                 }
@@ -911,10 +961,10 @@
             // Apply a small random factor to simulate prediction uncertainty
             const randomFactor = () => (Math.random() * 2 - 1); // -1 to 1
             
-            varcPrediction.textContent = (varcAvg + randomFactor()).toFixed(1);
-            lrdiPrediction.textContent = (lrdiAvg + randomFactor()).toFixed(1);
-            qaPrediction.textContent = (qaAvg + randomFactor()).toFixed(1);
-            overallPrediction.textContent = (overallAvg + randomFactor()).toFixed(1);
+            varcPrediction.textContent = (varcAvg + randomFactor()).toFixed(2);
+            lrdiPrediction.textContent = (lrdiAvg + randomFactor()).toFixed(2);
+            qaPrediction.textContent = (qaAvg + randomFactor()).toFixed(2);
+            overallPrediction.textContent = (overallAvg + randomFactor()).toFixed(2);
             
             // Add color classes
             varcPrediction.className = `prediction-value ${getPercentileClass(parseFloat(varcPrediction.textContent))}`;
