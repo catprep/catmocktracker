@@ -304,6 +304,15 @@
             background-color: #fac8cc;
         }
 
+        /* Excel buttons */
+        .excel-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             body {
@@ -471,6 +480,13 @@
                 </div>
             </div>
         </div>
+
+        <!-- Excel Import/Export Buttons -->
+        <div class="excel-buttons">
+            <button id="exportExcelBtn">Export as Excel</button>
+            <button id="importExcelBtn">Import from Excel</button>
+            <input type="file" id="excelFileInput" accept=".xlsx, .xls, .csv" style="display: none;">
+        </div>
     </div>
     
     <!-- Add/Edit Mock Modal -->
@@ -489,7 +505,7 @@
                 </div>
                 <div class="form-group">
                     <label for="varcScore">VARC Score</label>
-                    <input type="number" id="varcScore" min="0" required>
+                    <input type="number" id="varcScore" required>
                 </div>
                 <div class="form-group">
                     <label for="varcPercentile">VARC Percentile</label>
@@ -497,7 +513,7 @@
                 </div>
                 <div class="form-group">
                     <label for="lrdiScore">LRDI Score</label>
-                    <input type="number" id="lrdiScore" min="0" required>
+                    <input type="number" id="lrdiScore" required>
                 </div>
                 <div class="form-group">
                     <label for="lrdiPercentile">LRDI Percentile</label>
@@ -505,7 +521,7 @@
                 </div>
                 <div class="form-group">
                     <label for="qaScore">QA Score</label>
-                    <input type="number" id="qaScore" min="0" required>
+                    <input type="number" id="qaScore" required>
                 </div>
                 <div class="form-group">
                     <label for="qaPercentile">QA Percentile</label>
@@ -513,7 +529,7 @@
                 </div>
                 <div class="form-group">
                     <label for="overallScore">Overall Score</label>
-                    <input type="number" id="overallScore" min="0" required>
+                    <input type="number" id="overallScore" required>
                 </div>
                 <div class="form-group">
                     <label for="overallPercentile">Overall Percentile</label>
@@ -530,6 +546,7 @@
     <center>Made with 💗 by Dhruv Badaya (XLRI Jamshedpur)<br><br>Support me in making free tools like this by making a <a href="https://topmate.io/dhruvbadaya/1564455/pay">voluntary donation.</a>
     </center>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
     <script>
         // Data management with local storage
         const STORAGE_KEY = 'catMockTests';
@@ -557,6 +574,9 @@
         const qaPrediction = document.getElementById('qaPrediction');
         const overallPrediction = document.getElementById('overallPrediction');
         const chartContainer = document.getElementById('chartContainer');
+        const exportExcelBtn = document.getElementById('exportExcelBtn');
+        const importExcelBtn = document.getElementById('importExcelBtn');
+        const excelFileInput = document.getElementById('excelFileInput');
         
         // Chart variables
         let progressChart;
@@ -584,6 +604,80 @@
                     updateChart();
                 });
             });
+            
+            // Excel export/import
+            exportExcelBtn.addEventListener('click', exportToExcel);
+            importExcelBtn.addEventListener('click', () => excelFileInput.click());
+            excelFileInput.addEventListener('change', importFromExcel);
+        }
+        
+        // Export data to Excel
+        function exportToExcel() {
+            const mocks = getMocks();
+            if (mocks.length === 0) {
+                alert('No data to export');
+                return;
+            }
+            
+            // Prepare worksheet
+            const ws = XLSX.utils.json_to_sheet(mocks);
+            
+            // Create workbook
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "MockTests");
+            
+            // Export to file
+            XLSX.writeFile(wb, "CAT_Mock_Tracker_Data.xlsx");
+        }
+        
+        // Import data from Excel
+        function importFromExcel(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    
+                    // Get first worksheet
+                    const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const jsonData = XLSX.utils.sheet_to_json(worksheet);
+                    
+                    // Validate and process data
+                    if (confirm(`Import ${jsonData.length} records? This will replace your current data.`)) {
+                        const validatedData = jsonData.map(item => {
+                            return {
+                                id: item.id || generateId(),
+                                name: item.name || 'Unnamed Mock',
+                                date: item.date || new Date().toISOString().split('T')[0],
+                                varcScore: item.varcScore !== undefined ? Number(item.varcScore) : 0,
+                                varcPercentile: Math.min(100, item.varcPercentile !== undefined ? Number(item.varcPercentile) : 0),
+                                lrdiScore: item.lrdiScore !== undefined ? Number(item.lrdiScore) : 0,
+                                lrdiPercentile: Math.min(100, item.lrdiPercentile !== undefined ? Number(item.lrdiPercentile) : 0),
+                                qaScore: item.qaScore !== undefined ? Number(item.qaScore) : 0,
+                                qaPercentile: Math.min(100, item.qaPercentile !== undefined ? Number(item.qaPercentile) : 0),
+                                overallScore: item.overallScore !== undefined ? Number(item.overallScore) : 0,
+                                overallPercentile: Math.min(100, item.overallPercentile !== undefined ? Number(item.overallPercentile) : 0)
+                            };
+                        });
+                        
+                        saveMocks(validatedData);
+                        renderMockTable();
+                        updateChart();
+                        updatePredictions();
+                        alert('Data imported successfully!');
+                    }
+                } catch (error) {
+                    console.error('Error importing Excel file:', error);
+                    alert('Error importing Excel file. Please check the file format.');
+                }
+                
+                // Reset file input
+                excelFileInput.value = '';
+            };
+            reader.readAsArrayBuffer(file);
         }
         
         // Render mock table
@@ -714,14 +808,14 @@
                 id: mockIdInput.value ? parseInt(mockIdInput.value) : generateId(),
                 name: document.getElementById('mockName').value,
                 date: document.getElementById('mockDate').value,
-                varcScore: parseInt(document.getElementById('varcScore').value),
-                varcPercentile: parseFloat(document.getElementById('varcPercentile').value),
-                lrdiScore: parseInt(document.getElementById('lrdiScore').value),
-                lrdiPercentile: parseFloat(document.getElementById('lrdiPercentile').value),
-                qaScore: parseInt(document.getElementById('qaScore').value),
-                qaPercentile: parseFloat(document.getElementById('qaPercentile').value),
-                overallScore: parseInt(document.getElementById('overallScore').value),
-                overallPercentile: parseFloat(document.getElementById('overallPercentile').value)
+                varcScore: parseFloat(document.getElementById('varcScore').value),
+                varcPercentile: Math.min(100, parseFloat(document.getElementById('varcPercentile').value)),
+                lrdiScore: parseFloat(document.getElementById('lrdiScore').value),
+                lrdiPercentile: Math.min(100, parseFloat(document.getElementById('lrdiPercentile').value)),
+                qaScore: parseFloat(document.getElementById('qaScore').value),
+                qaPercentile: Math.min(100, parseFloat(document.getElementById('qaPercentile').value)),
+                overallScore: parseFloat(document.getElementById('overallScore').value),
+                overallPercentile: Math.min(100, parseFloat(document.getElementById('overallPercentile').value))
             };
             
             let mocks = getMocks();
@@ -961,10 +1055,11 @@
             // Apply a small random factor to simulate prediction uncertainty
             const randomFactor = () => (Math.random() * 2 - 1); // -1 to 1
             
-            varcPrediction.textContent = (varcAvg + randomFactor()).toFixed(2);
-            lrdiPrediction.textContent = (lrdiAvg + randomFactor()).toFixed(2);
-            qaPrediction.textContent = (qaAvg + randomFactor()).toFixed(2);
-            overallPrediction.textContent = (overallAvg + randomFactor()).toFixed(2);
+            // Cap predictions at 99.98
+            varcPrediction.textContent = Math.min(99.98, (varcAvg + randomFactor())).toFixed(2);
+            lrdiPrediction.textContent = Math.min(99.98, (lrdiAvg + randomFactor())).toFixed(2);
+            qaPrediction.textContent = Math.min(99.98, (qaAvg + randomFactor())).toFixed(2);
+            overallPrediction.textContent = Math.min(99.98, (overallAvg + randomFactor())).toFixed(2);
             
             // Add color classes
             varcPrediction.className = `prediction-value ${getPercentileClass(parseFloat(varcPrediction.textContent))}`;
