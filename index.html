@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicon Tags -->
-<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="favicon/android-chrome-512x512.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-<link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
-<link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+    <link rel="manifest" href="favicon/site.webmanifest">
 
 
     <!-- Open Graph (Facebook, WhatsApp, etc.) -->
-<meta property="og:title" content="CAT Mocks Tracker | 99 Percentile Club">
-<meta property="og:description" content="Track your mocks easily with the free tracker">
-<meta property="og:image" content="https://tracker.99percentile.club/social-banner.jpg">
-<meta property="og:url" content="https://yourdomain.com">
-<meta property="og:type" content="website">
+    <meta property="og:title" content="CAT Mocks Tracker | 99 Percentile Club">
+    <meta property="og:description" content="Track your mocks easily with the free tracker">
+    <meta property="og:image" content="https://tracker.99percentile.club/social-banner.jpg">
+    <meta property="og:url" content="https://yourdomain.com">
+    <meta property="og:type" content="website">
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="CAT Mocks Tracker | 99 Percentile Club">
-<meta name="twitter:description" content="A short description of your website.">
-<meta name="twitter:image" content="https://tracker.99percentile.club/social-banner.jpg">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CAT Mocks Tracker | 99 Percentile Club">
+    <meta name="twitter:description" content="A short description of your website.">
+    <meta name="twitter:image" content="https://tracker.99percentile.club/social-banner.jpg">
 
     <title>CAT Mock Test Tracker</title>
     <style>
@@ -33,102 +34,131 @@
             box-sizing: border-box;
             font-family: 'Arial', sans-serif;
         }
-        
+
         body {
             background-color: white;
             color: black;
-            padding: 40px 20px 60px; /* Top: 40px, Left/Right: 20px, Bottom: 60px */
+            padding: 40px 20px 60px;
+            /* Top: 40px, Left/Right: 20px, Bottom: 60px */
             animation: fadeIn 1s ease-in-out;
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
-        
+
         h1 {
             text-align: center;
             margin-bottom: 30px;
             font-size: 2.5rem;
             animation: slideDown 0.8s ease-out;
-            padding: 0 10px; /* Added padding to heading */
+            padding: 0 10px;
+            /* Added padding to heading */
         }
-        
+
         @keyframes slideDown {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px; /* Added container padding */
+            padding: 0 15px;
+            /* Added container padding */
         }
-        
+
         .controls {
             display: flex;
-            justify-content: center; /* Center the button */
-            margin-bottom: 30px; /* Increased bottom margin */
+            justify-content: center;
+            /* Center the button */
+            margin-bottom: 30px;
+            /* Increased bottom margin */
             animation: fadeIn 1s 0.3s both;
-            padding: 15px 0; /* Added vertical padding */
+            padding: 15px 0;
+            /* Added vertical padding */
         }
-        
+
         button {
             background-color: black;
             color: white;
             border: none;
-            padding: 12px 24px; /* Increased button padding */
+            padding: 12px 24px;
+            /* Increased button padding */
             cursor: pointer;
             border-radius: 4px;
             transition: all 0.3s ease;
             font-weight: bold;
             white-space: nowrap;
-            font-size: 1rem; /* Slightly larger font */
+            font-size: 1rem;
+            /* Slightly larger font */
         }
-        
+
         button:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        
+
         button:active {
             transform: translateY(0);
         }
-        
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 40px; /* Increased bottom margin */
+            margin-bottom: 40px;
+            /* Increased bottom margin */
             animation: fadeIn 1s 0.5s both;
             overflow-x: auto;
             display: block;
         }
-        
-        th, td {
+
+        th,
+        td {
             border: 1px solid black;
-            padding: 15px 12px; /* Increased cell padding */
+            padding: 15px 12px;
+            /* Increased cell padding */
             text-align: center;
             transition: all 0.3s ease;
         }
-        
+
         th {
             background-color: black;
             color: white;
             font-weight: bold;
-            padding: 16px 12px; /* Slightly more padding for headers */
+            padding: 16px 12px;
+            /* Slightly more padding for headers */
         }
-        
+
         tr:hover td {
             background-color: #f0f0f0;
         }
-        
-        .edit-btn, .delete-btn {
-            padding: 10px 16px; /* Increased button padding */
-            margin: 8px 8px; /* Increased margin between buttons */
-            font-size: 0.9rem; /* Slightly larger font */
-            min-width: 70px; /* Minimum width for consistency */
+
+        .edit-btn,
+        .delete-btn {
+            padding: 10px 16px;
+            /* Increased button padding */
+            margin: 8px 8px;
+            /* Increased margin between buttons */
+            font-size: 0.9rem;
+            /* Slightly larger font */
+            min-width: 70px;
+            /* Minimum width for consistency */
         }
-        
+
         .modal {
             display: none;
             position: fixed;
@@ -142,12 +172,14 @@
             align-items: center;
             animation: fadeIn 0.3s ease-out;
             overflow-y: auto;
-            padding: 30px 20px; /* Increased modal padding */
+            padding: 30px 20px;
+            /* Increased modal padding */
         }
-        
+
         .modal-content {
             background-color: white;
-            padding: 35px; /* Increased content padding */
+            padding: 35px;
+            /* Increased content padding */
             border-radius: 8px;
             width: 100%;
             max-width: 500px;
@@ -155,151 +187,181 @@
             overflow-y: auto;
             animation: scaleUp 0.3s ease-out;
         }
-        
+
         @keyframes scaleUp {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
-        
+
         .form-group {
-            margin-bottom: 20px; /* Increased form group spacing */
+            margin-bottom: 20px;
+            /* Increased form group spacing */
         }
-        
+
         label {
             display: block;
-            margin-bottom: 8px; /* Increased label spacing */
+            margin-bottom: 8px;
+            /* Increased label spacing */
             font-weight: bold;
-            font-size: 1rem; /* Slightly larger labels */
+            font-size: 1rem;
+            /* Slightly larger labels */
         }
-        
-        input, select {
+
+        input,
+        select {
             width: 100%;
-            padding: 12px; /* Increased input padding */
+            padding: 12px;
+            /* Increased input padding */
             border: 1px solid black;
             border-radius: 4px;
-            font-size: 1rem; /* Larger input text */
+            font-size: 1rem;
+            /* Larger input text */
         }
-        
+
         .form-actions {
             display: flex;
             justify-content: flex-end;
-            margin-top: 25px; /* Increased top margin */
+            margin-top: 25px;
+            /* Increased top margin */
             flex-wrap: wrap;
-            gap: 15px; /* Increased gap between buttons */
+            gap: 15px;
+            /* Increased gap between buttons */
         }
-        
+
         .form-actions button {
             margin-left: 0;
-            padding: 12px 24px; /* Consistent button size */
+            padding: 12px 24px;
+            /* Consistent button size */
         }
-        
+
         .chart-wrapper {
             width: 100%;
             overflow-x: auto;
             margin-bottom: 20px;
         }
-        
+
         .chart-container {
             height: 400px;
-            min-width: 600px; /* Minimum width */
+            min-width: 600px;
+            /* Minimum width */
             position: relative;
             animation: fadeIn 1s 0.7s both;
         }
-        
+
         /* Dynamically adjust chart width based on number of mocks */
         .chart-container.large {
             min-width: 1000px;
         }
-        
+
         .chart-container.xlarge {
             min-width: 1200px;
         }
-        
+
         .chart-toggle {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 10px; /* Increased gap between buttons */
-            margin-bottom: 30px; /* Increased bottom margin */
+            gap: 10px;
+            /* Increased gap between buttons */
+            margin-bottom: 30px;
+            /* Increased bottom margin */
             animation: fadeIn 1s 0.7s both;
         }
-        
+
         .chart-toggle button {
             margin: 0;
             background-color: white;
             color: black;
             border: 1px solid black;
-            padding: 10px 20px; /* Consistent button size */
+            padding: 10px 20px;
+            /* Consistent button size */
         }
-        
+
         .chart-toggle button.active {
             background-color: black;
             color: white;
         }
-        
+
         .prediction-container {
             background-color: #f9f9f9;
-            padding: 25px; /* Increased container padding */
+            padding: 25px;
+            /* Increased container padding */
             border-radius: 8px;
-            margin-top: 40px; /* Increased top margin */
+            margin-top: 40px;
+            /* Increased top margin */
             animation: fadeIn 1s 1s both;
         }
-        
+
         .prediction-title {
             font-size: 1.5rem;
-            margin-bottom: 20px; /* Increased bottom margin */
+            margin-bottom: 20px;
+            /* Increased bottom margin */
             text-align: center;
-            padding: 0 10px; /* Added text padding */
+            padding: 0 10px;
+            /* Added text padding */
         }
-        
+
         .prediction-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px; /* Increased gap between cards */
+            gap: 20px;
+            /* Increased gap between cards */
         }
-        
+
         .prediction-card {
             background-color: white;
             border: 1px solid black;
-            padding: 20px; /* Increased card padding */
+            padding: 20px;
+            /* Increased card padding */
             border-radius: 4px;
             text-align: center;
             transition: all 0.3s ease;
         }
-        
+
         .prediction-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        
+
         .prediction-card h3 {
-            margin-bottom: 15px; /* Increased bottom margin */
-            font-size: 1.2rem; /* Slightly larger heading */
+            margin-bottom: 15px;
+            /* Increased bottom margin */
+            font-size: 1.2rem;
+            /* Slightly larger heading */
         }
-        
+
         .prediction-value {
-            font-size: 2rem; /* Larger value */
+            font-size: 2rem;
+            /* Larger value */
             font-weight: bold;
-            margin: 10px 0; /* Added vertical margin */
+            margin: 10px 0;
+            /* Added vertical margin */
         }
-        
+
         /* Color coding for percentiles */
         .percentile-90 {
             background-color: #f7e6f0;
         }
-        
+
         .percentile-95 {
             background-color: #e8d3e8;
         }
-        
+
         .percentile-99 {
             background-color: #d5ead0;
         }
-        
+
         .percentile-75 {
             background-color: #faf8cd;
         }
-        
+
         .percentile-default {
             background-color: #fac8cc;
         }
@@ -316,35 +378,38 @@
         /* Responsive adjustments */
         @media (max-width: 768px) {
             body {
-                padding: 30px 15px 40px; /* Adjusted padding for tablet */
+                padding: 30px 15px 40px;
+                /* Adjusted padding for tablet */
             }
-            
+
             h1 {
                 font-size: 2rem;
             }
-            
+
             table {
                 font-size: 0.9rem;
             }
-            
-            th, td {
+
+            th,
+            td {
                 padding: 12px 8px;
             }
-            
-            .edit-btn, .delete-btn {
+
+            .edit-btn,
+            .delete-btn {
                 padding: 8px 12px;
                 margin: 6px 6px;
                 font-size: 0.8rem;
             }
-            
+
             .modal-content {
                 padding: 25px;
             }
-            
+
             .prediction-card {
                 padding: 15px;
             }
-            
+
             .prediction-value {
                 font-size: 1.8rem;
             }
@@ -352,87 +417,116 @@
 
         @media (max-width: 480px) {
             body {
-                padding: 25px 10px 30px; /* Adjusted padding for mobile */
+                padding: 25px 10px 30px;
+                /* Adjusted padding for mobile */
             }
-            
+
             h1 {
                 font-size: 1.8rem;
                 padding: 0 5px;
             }
-            
+
             .controls {
                 padding: 10px 0;
             }
-            
+
             button {
                 padding: 10px 20px;
                 font-size: 0.9rem;
             }
-            
+
             table {
                 font-size: 0.8rem;
             }
-            
-            th, td {
+
+            th,
+            td {
                 padding: 10px 6px;
             }
-            
-            .edit-btn, .delete-btn {
+
+            .edit-btn,
+            .delete-btn {
                 padding: 6px 8px;
                 margin: 4px 4px;
                 font-size: 0.7rem;
                 min-width: 60px;
             }
-            
+
             .modal-content {
                 padding: 20px;
             }
-            
+
             .form-group {
                 margin-bottom: 15px;
             }
-            
-            input, select {
+
+            input,
+            select {
                 padding: 10px;
             }
-            
+
             .prediction-grid {
                 grid-template-columns: 1fr;
                 gap: 15px;
             }
-            
+
             .prediction-card {
                 padding: 15px;
             }
-            
+
             .prediction-value {
                 font-size: 1.6rem;
             }
         }
+
+        
+    
+    </style>
+
+    <style>
+        img.responsive-image {
+            /* Default/Mobile first approach - 95% width */
+            width: 95%;
+            display: block;
+            margin: 0 auto;
+            /* Centers the image */
+
+            /* Tablet styles - 90% width */
+            @media (min-width: 768px) {
+                width: 90%;
+            }
+
+            /* Desktop styles - 70% width */
+            @media (min-width: 1024px) {
+                width: 70%;
+            }
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <h1>CAT Mock Test Tracker</h1>
-  
-        
+        <br><br>
+        <center><img src="titlebanner.png" width="70%" alt="title"  class="responsive-image"></center><br>
+
+
         <div class="controls">
             <button id="addMockBtn">Add New Mock</button>
         </div>
-        
+
         <div class="chart-toggle">
             <button class="chart-btn active" data-chart="overall">Overall</button>
             <button class="chart-btn" data-chart="varc">VARC</button>
             <button class="chart-btn" data-chart="lrdi">LRDI</button>
             <button class="chart-btn" data-chart="qa">QA</button>
         </div>
-        
+
         <div class="chart-wrapper">
             <div class="chart-container" id="chartContainer">
                 <canvas id="progressChart"></canvas>
             </div>
         </div>
-        
+
         <table id="mockTable">
             <thead>
                 <tr>
@@ -453,8 +547,8 @@
                 <!-- Mock data will be inserted here -->
             </tbody>
         </table>
-        
-        <a href="https://topmate.io/dhruvbadaya"><img src="interviewad.png" width="100%"></a> 
+
+        <a href="https://topmate.io/dhruvbadaya"><img src="interviewad.png" width="100%"></a>
         <div class="prediction-container">
             <h2 class="prediction-title">CAT Percentile Prediction</h2>
             <div class="prediction-grid">
@@ -488,7 +582,8 @@
             <input type="file" id="excelFileInput" accept=".xlsx, .xls, .csv" style="display: none;">
         </div>
     </div>
-    
+    If
+
     <!-- Add/Edit Mock Modal -->
     <div class="modal" id="mockModal">
         <div class="modal-content">
@@ -542,24 +637,25 @@
             </form>
         </div>
     </div>
-<br><br><br>
-    <center>Made with 💗 by Dhruv Badaya (XLRI Jamshedpur)<br><br>Support me in making free tools like this by making a <a href="https://topmate.io/dhruvbadaya/1564455/pay">voluntary donation.</a>
+    <br><br><br>
+    <center>Made with 💗 by Dhruv Badaya (XLRI Jamshedpur)<br><br>Support me in making free tools like this by making a
+        <a href="https://topmate.io/dhruvbadaya/1564455/pay">voluntary donation.</a>
     </center>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
     <script>
         // Data management with local storage
         const STORAGE_KEY = 'catMockTests';
-        
+
         function getMocks() {
             const mocksJson = localStorage.getItem(STORAGE_KEY);
             return mocksJson ? JSON.parse(mocksJson) : [];
         }
-        
+
         function saveMocks(mocks) {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(mocks));
         }
-        
+
         // DOM elements
         const mockTableBody = document.getElementById('mockTableBody');
         const addMockBtn = document.getElementById('addMockBtn');
@@ -577,11 +673,11 @@
         const exportExcelBtn = document.getElementById('exportExcelBtn');
         const importExcelBtn = document.getElementById('importExcelBtn');
         const excelFileInput = document.getElementById('excelFileInput');
-        
+
         // Chart variables
         let progressChart;
         let currentChartType = 'overall';
-        
+
         // Initialize the app
         function init() {
             renderMockTable();
@@ -589,13 +685,13 @@
             updatePredictions();
             initChart();
         }
-        
+
         // Set up event listeners
         function setupEventListeners() {
             addMockBtn.addEventListener('click', () => openModal());
             cancelBtn.addEventListener('click', () => closeModal());
             mockForm.addEventListener('submit', handleFormSubmit);
-            
+
             chartBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     chartBtns.forEach(b => b.classList.remove('active'));
@@ -604,13 +700,13 @@
                     updateChart();
                 });
             });
-            
+
             // Excel export/import
             exportExcelBtn.addEventListener('click', exportToExcel);
             importExcelBtn.addEventListener('click', () => excelFileInput.click());
             excelFileInput.addEventListener('change', importFromExcel);
         }
-        
+
         // Export data to Excel
         function exportToExcel() {
             const mocks = getMocks();
@@ -618,33 +714,33 @@
                 alert('No data to export');
                 return;
             }
-            
+
             // Prepare worksheet
             const ws = XLSX.utils.json_to_sheet(mocks);
-            
+
             // Create workbook
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, "MockTests");
-            
+
             // Export to file
             XLSX.writeFile(wb, "CAT_Mock_Tracker_Data.xlsx");
         }
-        
+
         // Import data from Excel
         function importFromExcel(e) {
             const file = e.target.files[0];
             if (!file) return;
-            
+
             const reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 try {
                     const data = new Uint8Array(e.target.result);
                     const workbook = XLSX.read(data, { type: 'array' });
-                    
+
                     // Get first worksheet
                     const worksheet = workbook.Sheets[workbook.SheetNames[0]];
                     const jsonData = XLSX.utils.sheet_to_json(worksheet);
-                    
+
                     // Validate and process data
                     if (confirm(`Import ${jsonData.length} records? This will replace your current data.`)) {
                         const validatedData = jsonData.map(item => {
@@ -662,7 +758,7 @@
                                 overallPercentile: Math.min(100, item.overallPercentile !== undefined ? Number(item.overallPercentile) : 0)
                             };
                         });
-                        
+
                         saveMocks(validatedData);
                         renderMockTable();
                         updateChart();
@@ -673,27 +769,27 @@
                     console.error('Error importing Excel file:', error);
                     alert('Error importing Excel file. Please check the file format.');
                 }
-                
+
                 // Reset file input
                 excelFileInput.value = '';
             };
             reader.readAsArrayBuffer(file);
         }
-        
+
         // Render mock table
         function renderMockTable() {
             const mocks = getMocks();
             mockTableBody.innerHTML = '';
-            
+
             if (mocks.length === 0) {
                 const row = document.createElement('tr');
                 row.innerHTML = `<td colspan="11" style="text-align: center; padding: 20px;">No mock tests added yet. Click "Add New Mock" to get started.</td>`;
                 mockTableBody.appendChild(row);
                 return;
             }
-            
+
             mocks.sort((a, b) => new Date(a.date) - new Date(b.date));
-            
+
             mocks.forEach(mock => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
@@ -714,7 +810,7 @@
                 `;
                 mockTableBody.appendChild(row);
             });
-            
+
             // Add event listeners to edit and delete buttons
             document.querySelectorAll('.edit-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
@@ -722,30 +818,30 @@
                     openModal(id);
                 });
             });
-            
+
             document.querySelectorAll('.delete-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const id = parseInt(e.target.dataset.id);
                     deleteMock(id);
                 });
             });
-            
+
             // Adjust chart container width based on number of mocks
             adjustChartContainerWidth(mocks.length);
         }
-        
+
         // Adjust chart container width based on number of mocks
         function adjustChartContainerWidth(numMocks) {
             // Reset classes
             chartContainer.classList.remove('large', 'xlarge');
-            
+
             if (numMocks > 10) {
                 chartContainer.classList.add('xlarge');
             } else if (numMocks > 5) {
                 chartContainer.classList.add('large');
             }
         }
-        
+
         // Get percentile class for color coding
         function getPercentileClass(percentile) {
             if (percentile >= 99) return 'percentile-99';
@@ -754,17 +850,17 @@
             if (percentile >= 75) return 'percentile-75';
             return 'percentile-default';
         }
-        
+
         // Format date for display
         function formatDate(dateString) {
             const date = new Date(dateString);
             return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
         }
-        
+
         // Open modal for adding/editing
         function openModal(id = null) {
             const mocks = getMocks();
-            
+
             if (id) {
                 // Edit mode
                 const mock = mocks.find(m => m.id === id);
@@ -789,21 +885,21 @@
                 mockIdInput.value = '';
                 document.getElementById('mockDate').value = new Date().toISOString().split('T')[0];
             }
-            
+
             mockModal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
-        
+
         // Close modal
         function closeModal() {
             mockModal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-        
+
         // Handle form submission
         function handleFormSubmit(e) {
             e.preventDefault();
-            
+
             const mockData = {
                 id: mockIdInput.value ? parseInt(mockIdInput.value) : generateId(),
                 name: document.getElementById('mockName').value,
@@ -817,9 +913,9 @@
                 overallScore: parseFloat(document.getElementById('overallScore').value),
                 overallPercentile: Math.min(100, parseFloat(document.getElementById('overallPercentile').value))
             };
-            
+
             let mocks = getMocks();
-            
+
             if (mockIdInput.value) {
                 // Update existing mock
                 const index = mocks.findIndex(m => m.id === mockData.id);
@@ -830,20 +926,20 @@
                 // Add new mock
                 mocks.push(mockData);
             }
-            
+
             saveMocks(mocks);
             closeModal();
             renderMockTable();
             updateChart();
             updatePredictions();
         }
-        
+
         // Generate ID for new mock
         function generateId() {
             const mocks = getMocks();
             return mocks.length > 0 ? Math.max(...mocks.map(m => m.id)) + 1 : 1;
         }
-        
+
         // Delete mock
         function deleteMock(id) {
             if (confirm('Are you sure you want to delete this mock test?')) {
@@ -855,11 +951,11 @@
                 updatePredictions();
             }
         }
-        
+
         // Initialize chart
         function initChart() {
             const ctx = document.getElementById('progressChart').getContext('2d');
-            
+
             progressChart = new Chart(ctx, {
                 type: 'line',
                 data: getChartData(),
@@ -893,7 +989,7 @@
                             mode: 'index',
                             intersect: false,
                             callbacks: {
-                                label: function(context) {
+                                label: function (context) {
                                     let label = context.dataset.label || '';
                                     if (label) {
                                         label += ': ';
@@ -914,12 +1010,12 @@
                 }
             });
         }
-        
+
         // Get chart data based on current chart type
         function getChartData() {
             const mocks = getMocks();
             const labels = mocks.map(mock => `${mock.name}\n${formatDate(mock.date)}`);
-            
+
             if (currentChartType === 'overall') {
                 return {
                     labels: labels,
@@ -1018,7 +1114,7 @@
                 };
             }
         }
-        
+
         // Update chart
         function updateChart() {
             if (progressChart) {
@@ -1026,50 +1122,51 @@
                 progressChart.update();
             }
         }
-        
+
         // Update percentile predictions
         function updatePredictions() {
             const mocks = getMocks();
-            
+
             if (mocks.length === 0) {
                 varcPrediction.textContent = '-';
                 lrdiPrediction.textContent = '-';
                 qaPrediction.textContent = '-';
                 overallPrediction.textContent = '-';
-                
+
                 varcPrediction.className = 'prediction-value';
                 lrdiPrediction.className = 'prediction-value';
                 qaPrediction.className = 'prediction-value';
                 overallPrediction.className = 'prediction-value';
                 return;
             }
-            
+
             // Simple prediction based on average of last 3 mocks (or all if less than 3)
             const recentMocks = mocks.slice(-3);
-            
+
             const varcAvg = recentMocks.reduce((sum, mock) => sum + mock.varcPercentile, 0) / recentMocks.length;
             const lrdiAvg = recentMocks.reduce((sum, mock) => sum + mock.lrdiPercentile, 0) / recentMocks.length;
             const qaAvg = recentMocks.reduce((sum, mock) => sum + mock.qaPercentile, 0) / recentMocks.length;
             const overallAvg = recentMocks.reduce((sum, mock) => sum + mock.overallPercentile, 0) / recentMocks.length;
-            
+
             // Apply a small random factor to simulate prediction uncertainty
             const randomFactor = () => (Math.random() * 2 - 1); // -1 to 1
-            
+
             // Cap predictions at 99.98
             varcPrediction.textContent = Math.min(99.98, (varcAvg + randomFactor())).toFixed(2);
             lrdiPrediction.textContent = Math.min(99.98, (lrdiAvg + randomFactor())).toFixed(2);
             qaPrediction.textContent = Math.min(99.98, (qaAvg + randomFactor())).toFixed(2);
             overallPrediction.textContent = Math.min(99.98, (overallAvg + randomFactor())).toFixed(2);
-            
+
             // Add color classes
             varcPrediction.className = `prediction-value ${getPercentileClass(parseFloat(varcPrediction.textContent))}`;
             lrdiPrediction.className = `prediction-value ${getPercentileClass(parseFloat(lrdiPrediction.textContent))}`;
             qaPrediction.className = `prediction-value ${getPercentileClass(parseFloat(qaPrediction.textContent))}`;
             overallPrediction.className = `prediction-value ${getPercentileClass(parseFloat(overallPrediction.textContent))}`;
         }
-        
+
         // Initialize the app
         window.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
+
 </html>
